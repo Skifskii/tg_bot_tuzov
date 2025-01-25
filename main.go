@@ -1,7 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"flag"
+	"log"
+)
 
 func main() {
-	fmt.Println("hello world!")
+	t := mustToken()
+}
+
+func mustToken() string {
+	token := flag.String(
+		"token-bot-token",
+		"",
+		"token access to telegram bot",
+	)
+
+	flag.Parse()
+
+	if *token == "" {
+		log.Fatal("token is not specified")
+	}
+
+	return *token
 }
